@@ -65,10 +65,39 @@ class Email:
         f.close
 
     def tag_head(self):
+        # tag time
         if self.time is not None:
-            whitespace = re.match(r'\A\s+', self.time).group(0)
+            s = re.match(r'\A\s+', self.time).group(0)
 
-            time = re.sub(r'\A\s+', '', self.time)
+            string = re.sub(r'\A\s+', '', self.time)
 
-            s = whitespace + '<time>' + time + '</time'
+            times = re.findall(r'\d{1,2}:\d{2} AM|\d{1,2}:\d{2} PM|\d{1,2}:\d{2}', string)
+
+            if len(times) > 1:
+                stime = '<stime>' + times[0] + '</stime'
+                stime_regex = r'\b' + times[0] + r'\b'
+
+                tagged = re.sub(stime_regex, stime, string)
+
+                etime = '<etime>' + times[1] + '</etime'
+                etime_regex = r'\b' + times[1] + r'\b'
+                tagged_two = re.sub(etime_regex, etime, tagged)
+
+                s += tagged_two
+
+            else:
+                s += '<stime>' + times[0] + '</stime'
+
             self.time = s
+
+        # tag place
+        if self.place is not None:
+            whitespace = re.match(r'\A\s+', self.place).group(0)
+
+            place = re.sub(r'\A\s+', '', self.place)
+
+            s = whitespace + '<location>' + place + '</location'
+            self.place = s
+
+    def tag_sentences(self):
+        return None
