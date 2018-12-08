@@ -1,0 +1,80 @@
+Ontology: 
+
+ Top
+|---- science
+|      |---- mathematics
+|      |       |---- geometry
+|      |---- engineering
+|      |       |---- design
+|      |       |---- magnetic and electric materials
+|      |       |---- policy
+|      |       |---- manufacturing
+|      |---- computer science
+|      |       |---- file names:
+|      |       |       |---- 301.txt
+|      |       |       |---- 302.txt
+|      |       |       |---- 303.txt
+|      |       |       |---- 304.txt
+|      |       |       |---- 305.txt
+|      |       |       |---- 306.txt
+|      |       |       |---- 307.txt
+|      |       |       |---- 308.txt
+|      |       |       |---- 309.txt
+|      |       |       |---- 310.txt
+|      |       |       |---- 311.txt
+|      |       |       |---- 312.txt
+|      |       |       |---- 313.txt
+|      |       |       |---- 314.txt
+|      |       |       |---- 315.txt
+|      |       |       |---- 316.txt
+|      |       |       |---- 317.txt
+|      |       |       |---- 318.txt
+|      |       |       |---- 319.txt
+|      |       |       |---- 320.txt
+|      |       |       |---- 321.txt
+|      |       |       |---- 322.txt
+|      |       |       |---- 323.txt
+|      |       |       |---- 324.txt
+|      |       |       |---- 325.txt
+|      |       |       |---- 326.txt
+|      |       |       |---- 327.txt
+|      |       |       |---- 328.txt
+|      |       |       |---- 329.txt
+|      |       |       |---- 330.txt
+|      |       |       |---- 331.txt
+|      |       |       |---- 332.txt
+|      |       |       |---- 333.txt
+|      |       |       |---- 334.txt
+|      |       |       |---- 335.txt
+|      |       |       |---- 336.txt
+|      |       |       |---- 337.txt
+|      |       |       |---- 338.txt
+|      |       |       |---- 339.txt
+|      |       |       |---- 340.txt
+|      |       |       |---- 341.txt
+|      |       |       |---- 342.txt
+|      |       |       |---- 343.txt
+|      |       |       |---- 344.txt
+|      |       |       |---- 345.txt
+|      |       |       |---- 346.txt
+|      |       |       |---- 347.txt
+|      |       |       |---- 348.txt
+|      |       |       |---- 349.txt
+|      |       |       |---- 350.txt
+|      |       |---- nlp
+|      |       |---- computer architecture
+|      |       |---- robotics
+|      |       |       |---- medical robotics
+|      |       |       |---- space robots
+|      |       |       |---- robotics learning
+|      |       |       |---- robot motion
+|      |       |       |---- planning
+|      |       |---- graphics
+|      |       |---- control systems
+|      |       |---- logic and reasoning
+|      |       |---- programming
+|      |       |---- machine learning
+|      |       |---- security
+|      |       |---- vision
+|---- student and working life
+|---- teaching

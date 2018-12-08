@@ -4,9 +4,10 @@ import re
 from os import listdir
 from os.path import isfile, join
 
+import TaggedEmail
+
 
 def import_emails(location):
-
     filename_array = [f for f in listdir(location) if isfile(join(location, f))]
     emails = []
 
@@ -17,6 +18,26 @@ def import_emails(location):
 
     print('Total Emails: ')
     print(len(emails))
+    return emails
+
+
+def import_tagged_emails(location):
+    filename_array = [f for f in listdir(location) if isfile(join(location, f))]
+    emails = []
+
+    for name in filename_array:
+
+        text = open(location + name)
+        string = text.read()
+
+        if len(string) > 1:
+            email = TaggedEmail.TaggedEmail(name, string)
+
+            emails.append(email)
+
+    print('Total Tagged Emails: ')
+    print(len(emails))
+
     return emails
 
 
@@ -48,7 +69,7 @@ def import_single_email(location, name):
         email_time = p.search(string).group(0)
 
         # check if contains place
-        email_place= None
+        email_place = None
         if re.search(r'\bPlace\b', string):
             p = re.compile(r'(?<=Place:)\s*([^\n\r]*)')
             email_place = p.search(string).group(0)
@@ -71,8 +92,8 @@ def import_single_email(location, name):
         p = re.compile(r'(?<=Abstract:)(.|\s)*')
         email_abstract = p.search(string).group(0)
 
-        email = Email.Email(name, email_head, email_type, email_who, email_topic, email_dates, email_time, email_place, email_duration, email_host, email_poster, email_abstract)
+        email = Email.Email(name, email_head, email_type, email_who, email_topic, email_dates, email_time, email_place,
+                            email_duration, email_host, email_poster, email_abstract)
 
         return email
     return None
-
