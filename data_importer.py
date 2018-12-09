@@ -21,6 +21,41 @@ def import_emails(location):
     return emails
 
 
+def import_training_emails(location):
+    filename_array = [f for f in listdir(location) if isfile(join(location, f))]
+
+    locations = []
+    speakers = []
+
+    for name in filename_array:
+
+        text = open(location + name)
+        string = text.read()
+
+        regex = r'(?<=<location>).*?(?=<\/location>)'
+
+        search = re.findall(regex, string, re.DOTALL)
+
+        email_locations = []
+
+        for match in search:
+            email_locations.append(match)
+
+        regex = r'(?<=<speaker>).*?(?=<\/speaker>)'
+
+        search = re.findall(regex, string, re.DOTALL)
+
+        email_speakers = []
+
+        for match in search:
+            email_speakers.append(match)
+
+        locations += email_locations
+        speakers += email_speakers
+
+    return locations, speakers
+
+
 def import_tagged_emails(location):
     filename_array = [f for f in listdir(location) if isfile(join(location, f))]
     emails = []

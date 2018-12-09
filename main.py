@@ -5,15 +5,16 @@ from collections import Counter
 from Ontology import Ontology
 
 
-
 pos_tagger = pos_tagger.train()
 
 tagged_emails = data_importer.import_tagged_emails("seminars/seminar_testdata/test_tagged/")
 
 untagged_emails = data_importer.import_emails("seminars/seminars_untagged/untagged/")
 
-locations = []
-speakers = []
+training_tags = data_importer.import_training_emails("seminars/seminars_training/training/")
+
+locations = training_tags[0]
+speakers = training_tags[1]
 
 for email in untagged_emails:
     values = email.process(pos_tagger)
@@ -32,6 +33,38 @@ for email in untagged_emails:
     if email.who is None:
         email.tag_speakers_list(speakers)
     email.export()
+
+# metrics
+tp_classified = 0
+num_classified = 0
+tp_in_corpus = 0
+
+for index, email in enumerate(tagged_emails):
+    new_tags = untagged_emails[index].get_all_tags()
+    training_tags = email.all_tags
+
+    c1 = Counter([x[0] for x in new_tags])
+    c2 = Counter([x[0] for x in training_tags])
+
+    diff = c1 - c2
+
+    tp_classified += len(diff)
+
+    # precision
+    num_classified += len(new_tags)
+
+    # recall
+    tp_in_corpus += len(training_tags)
+
+precision = float(tp_classified) / num_classified
+recall = float(tp_classified) / tp_in_corpus
+
+f_value = (2 * (precision * recall) / (precision + recall))
+
+print "Precision: " + precision.__str__()
+print "Recall: " + recall.__str__()
+print "F value: " + f_value.__str__()
+
 
 # ontology
 
@@ -67,34 +100,3 @@ f = open("ontology_stripped.txt", "w+")
 
 f.write(ont_string)
 f.close()
-
-# metrics
-tp_classified = 0
-num_classified = 0
-tp_in_corpus = 0
-
-for index, email in enumerate(tagged_emails):
-    new_tags = untagged_emails[index].get_all_tags()
-    training_tags = email.all_tags
-
-    c1 = Counter([x[0] for x in new_tags])
-    c2 = Counter([x[0] for x in training_tags])
-
-    diff = c1 - c2
-
-    tp_classified += len(diff)
-
-    # precision
-    num_classified += len(new_tags)
-
-    # recall
-    tp_in_corpus += len(training_tags)
-
-precision = float(tp_classified) / num_classified
-recall = float(tp_classified) / tp_in_corpus
-
-f_value = (2 * (precision * recall) / (precision + recall))
-
-print "Precision: " + precision.__str__()
-print "Recall: " + recall.__str__()
-print "F value: " + f_value.__str__()
