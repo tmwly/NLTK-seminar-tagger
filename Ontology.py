@@ -96,10 +96,6 @@ class Ontology:
                                             'settings'],
                             'talks': list()  # to add
                         },
-                        'security': {
-                            'topic_words': ['security', 'encryption', 'aes', 'data', 'cryptography'],
-                            'talks': list()  # to add
-                        },
                         'topic_words': ['cs', 'computer', 'science', 'agent', 'application', 'problem', 'solution',
                                         'program', 'efficiency', 'automatic', 'data', 'speed', 'device',
                                         'computing', 'apple', 'technology', 'time', 'graph', 'user', 'interface',

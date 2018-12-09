@@ -48,7 +48,7 @@ class Ontology_calc:
                     if topic_word in model.vocab and word[0] in model.vocab:
 
                         score = (model.similarity(word[0], topic_word) * word[1])
-                        if score > 0.9:
+                        if score > 0.8:
                             word_total += score
                     elif topic_word == word[0]:
                         score = 1 * word[1]
