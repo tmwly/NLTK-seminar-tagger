@@ -171,7 +171,7 @@ class Email:
                 matched_speakers += 1
 
         #todo improve this
-        if matched_speakers > 0:
+        if matched_speakers == 0:
             tagged = self.pos
 
             l = len(tagged)

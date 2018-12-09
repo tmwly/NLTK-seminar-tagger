@@ -4,17 +4,20 @@ import pos_tagger
 from collections import Counter
 from Ontology import Ontology
 
+# train
 
 pos_tagger = pos_tagger.train()
 
 tagged_emails = data_importer.import_tagged_emails("seminars/seminar_testdata/test_tagged/")
 
-untagged_emails = data_importer.import_emails("seminars/seminars_untagged/untagged/")
-
 training_tags = data_importer.import_training_emails("seminars/seminars_training/training/")
 
 locations = training_tags[0]
 speakers = training_tags[1]
+
+# tag emails
+
+untagged_emails = data_importer.import_emails("seminars/seminars_untagged/untagged/")
 
 for email in untagged_emails:
     values = email.process(pos_tagger)
@@ -34,7 +37,7 @@ for email in untagged_emails:
         email.tag_speakers_list(speakers)
     email.export()
 
-# metrics
+# generate metrics
 tp_classified = 0
 num_classified = 0
 tp_in_corpus = 0
@@ -48,13 +51,16 @@ for index, email in enumerate(tagged_emails):
 
     diff = c1 - c2
 
-    tp_classified += len(diff)
+    tp = len(new_tags) - len(diff)
+
+    tp_classified += tp
 
     # precision
     num_classified += len(new_tags)
 
     # recall
     tp_in_corpus += len(training_tags)
+
 
 precision = float(tp_classified) / num_classified
 recall = float(tp_classified) / tp_in_corpus
@@ -96,7 +102,7 @@ for email in untagged_emails:
 ont_string = ontology.__str__()
 print ont_string
 
-f = open("ontology_stripped.txt", "w+")
+f = open("ontology.txt", "w+")
 
 f.write(ont_string)
 f.close()
