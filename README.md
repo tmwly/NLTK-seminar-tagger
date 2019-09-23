@@ -1,6 +1,7 @@
 # NLTK-seminar-tagger
 This was a university project that aimed to tag and classify the content of seminar emails.
 Information such as the seminar time, its location, the speaker and its topic were tagged.
+It was written in python, and used the Natural Language Tool Kit.
 
 First, a part-of-sentence tagger was trained and tested on the list of all sentences in the emails.
 This POS data was then used to assist with tagging the speaker and the location.
